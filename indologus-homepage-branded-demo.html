@@ -1,0 +1,2631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="IndoLogus homepage concept demo: current affairs, static GK, PDFs, quizzes, videos and app links in one organized study hub." />
+  <title>IndoLogus Study Hub | Current Affairs, PDFs, Quizzes & App</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --surface: #ffffff;
+      --surface-soft: #f0f4ff;
+      --ink: #12182f;
+      --muted: #66708a;
+      --brand: #1f4fff;
+      --brand-dark: #1738b8;
+      --brand-soft: #e8eeff;
+      --accent: #ffb000;
+      --accent-soft: #fff4d8;
+      --success: #0f9f6e;
+      --danger: #ef4444;
+      --line: #dfe6f3;
+      --shadow: 0 20px 60px rgba(18, 24, 47, 0.12);
+      --shadow-soft: 0 14px 40px rgba(18, 24, 47, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(31, 79, 255, 0.16), transparent 34rem),
+        radial-gradient(circle at top right, rgba(255, 176, 0, 0.18), transparent 30rem),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 34px));
+      margin-inline: auto;
+    }
+
+    .top-strip {
+      background: #0d1533;
+      color: #d9e2ff;
+      font-size: 13px;
+    }
+
+    .top-strip .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 9px 0;
+    }
+
+    .top-strip strong {
+      color: #fff;
+    }
+
+    .top-strip .links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .top-strip a {
+      opacity: 0.92;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(20px);
+      background: rgba(246, 248, 252, 0.82);
+      border-bottom: 1px solid rgba(223, 230, 243, 0.72);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--brand), #6d8cff 58%, var(--accent));
+      box-shadow: 0 12px 30px rgba(31, 79, 255, 0.26);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.01em;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+      color: #2a334d;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 10px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 5px;
+      height: 2px;
+      border-radius: 20px;
+      background: var(--brand);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(31, 79, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-dark);
+    }
+
+    .btn-light {
+      background: #fff;
+      color: var(--brand-dark);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(18, 24, 47, 0.06);
+    }
+
+    .btn-dark {
+      background: #0d1533;
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(13, 21, 51, 0.22);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .hero {
+      padding: 82px 0 62px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--line);
+      color: #33405f;
+      font-size: 13px;
+      font-weight: 850;
+      box-shadow: 0 8px 22px rgba(18, 24, 47, 0.04);
+    }
+
+    .badge strong {
+      color: var(--brand-dark);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.96;
+      letter-spacing: -0.075em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--brand);
+    }
+
+    .lead {
+      color: #4f5b74;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.65;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 640px;
+    }
+
+    .trust-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(18, 24, 47, 0.06);
+    }
+
+    .trust-card strong {
+      display: block;
+      font-size: 26px;
+      letter-spacing: -0.04em;
+      margin-bottom: 2px;
+    }
+
+    .trust-card span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .hero-panel {
+      position: relative;
+    }
+
+    .phone-card {
+      border-radius: 38px;
+      background: #0d1533;
+      color: #fff;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .phone-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(31, 79, 255, 0.55), transparent 28%),
+        radial-gradient(circle at 70% 0%, rgba(255, 176, 0, 0.45), transparent 22%);
+      opacity: 0.85;
+    }
+
+    .phone-inner {
+      position: relative;
+      border-radius: 28px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(16px);
+      min-height: 590px;
+    }
+
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      color: #dbe4ff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .search-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      color: #edf2ff;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 20px;
+    }
+
+    .video-preview {
+      background: #fff;
+      color: var(--ink);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+      margin-bottom: 18px;
+    }
+
+    .video-art {
+      min-height: 190px;
+      background:
+        linear-gradient(135deg, rgba(31, 79, 255, 0.96), rgba(13, 21, 51, 0.94)),
+        radial-gradient(circle at top right, rgba(255, 176, 0, 0.6), transparent 36%);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-art::after {
+      content: "▶";
+      position: absolute;
+      right: 28px;
+      bottom: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--brand);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.20);
+    }
+
+    .video-art small {
+      color: #dce5ff;
+      font-weight: 850;
+    }
+
+    .video-art h3 {
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0;
+      max-width: 310px;
+    }
+
+    .video-info {
+      padding: 18px;
+    }
+
+    .tag-line {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--brand-dark);
+      background: var(--brand-soft);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mini-item {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 12px 10px;
+      background: #f8faff;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 850;
+      color: #43506c;
+    }
+
+    .floating-note {
+      position: absolute;
+      right: -12px;
+      bottom: 60px;
+      width: 230px;
+      background: #fff;
+      color: var(--ink);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--line);
+    }
+
+    .floating-note strong {
+      display: block;
+      margin-bottom: 7px;
+      letter-spacing: -0.02em;
+    }
+
+    .floating-note span {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .eyebrow {
+      color: var(--brand);
+      font-weight: 950;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      margin-bottom: 12px;
+    }
+
+    .section-head p,
+    .section-intro {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65;
+      max-width: 630px;
+      margin-bottom: 0;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .problem-card,
+    .feature-card,
+    .resource-card,
+    .quiz-card,
+    .path-step,
+    .app-card,
+    .contact-card,
+    .faq-item {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .problem-card {
+      padding: 22px;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card::after {
+      content: "";
+      position: absolute;
+      right: -46px;
+      bottom: -46px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--brand-soft);
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 23px;
+      margin-bottom: 22px;
+    }
+
+    .icon.accent {
+      background: var(--accent-soft);
+      color: #b87500;
+    }
+
+    .problem-card h3,
+    .feature-card h3,
+    .resource-card h3,
+    .quiz-card h3,
+    .app-card h3,
+    .contact-card h3 {
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .problem-card p,
+    .feature-card p,
+    .resource-card p,
+    .quiz-card p,
+    .path-step p,
+    .app-card p,
+    .contact-card p,
+    .faq-panel {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    .blue-band {
+      background: #0d1533;
+      color: #fff;
+      border-radius: 44px;
+      padding: 62px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .blue-band::before {
+      content: "";
+      position: absolute;
+      inset: -28% -10% auto auto;
+      width: 680px;
+      height: 680px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(31, 79, 255, 0.7), transparent 62%);
+    }
+
+    .blue-band > * {
+      position: relative;
+    }
+
+    .blue-band .eyebrow {
+      color: #96adff;
+    }
+
+    .blue-band p {
+      color: #c7d3f4;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .feature-card {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: none;
+    }
+
+    .feature-card h3 {
+      color: #fff;
+    }
+
+    .feature-card p {
+      color: #c7d3f4;
+    }
+
+    .content-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--line);
+      padding: 11px 15px;
+      background: #fff;
+      color: #3f4a64;
+      border-radius: 999px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .tab-btn.active,
+    .tab-btn:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+      box-shadow: 0 12px 26px rgba(31, 79, 255, 0.20);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .resource-card {
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .resource-thumb {
+      height: 172px;
+      padding: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), #0d1533);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resource-thumb.gold {
+      background: linear-gradient(135deg, #d88a00, #0d1533);
+    }
+
+    .resource-thumb.green {
+      background: linear-gradient(135deg, #0f9f6e, #0d1533);
+    }
+
+    .resource-thumb.purple {
+      background: linear-gradient(135deg, #7c3aed, #0d1533);
+    }
+
+    .resource-thumb.red {
+      background: linear-gradient(135deg, #ef4444, #0d1533);
+    }
+
+    .resource-thumb::after {
+      content: "";
+      position: absolute;
+      right: -35px;
+      bottom: -42px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .resource-thumb small {
+      font-size: 12px;
+      font-weight: 950;
+      color: rgba(255, 255, 255, 0.78);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .resource-thumb strong {
+      position: relative;
+      z-index: 1;
+      font-size: 25px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      max-width: 280px;
+    }
+
+    .resource-body {
+      padding: 20px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: #3f4a64;
+      background: #f2f5fb;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-weight: 850;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn-mini {
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 900;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--brand-dark);
+      cursor: pointer;
+    }
+
+    .btn-mini.primary {
+      color: #fff;
+      border-color: var(--brand);
+      background: var(--brand);
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      counter-reset: path;
+    }
+
+    .path-step {
+      padding: 24px;
+      position: relative;
+      min-height: 250px;
+    }
+
+    .path-step::before {
+      counter-increment: path;
+      content: "0" counter(path);
+      display: inline-flex;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      background: var(--brand-soft);
+      color: var(--brand);
+      border-radius: 16px;
+      font-weight: 950;
+      margin-bottom: 26px;
+    }
+
+    .path-step h3 {
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .quiz-section {
+      background: linear-gradient(180deg, transparent 0%, #eef3ff 100%);
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .quiz-card {
+      padding: 28px;
+    }
+
+    .question-box {
+      background: #f7f9ff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 18px;
+    }
+
+    .question-box h3 {
+      margin-bottom: 16px;
+    }
+
+    .answer-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .answer-list button {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .answer-list button:hover {
+      border-color: var(--brand);
+    }
+
+    .answer-list button.correct {
+      background: #e8fff6;
+      border-color: var(--success);
+      color: #0b684a;
+    }
+
+    .answer-list button.wrong {
+      background: #fff1f2;
+      border-color: var(--danger);
+      color: #9f1239;
+    }
+
+    .quiz-result {
+      min-height: 23px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .download-panel {
+      background: #0d1533;
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .download-panel::after {
+      content: "PDF";
+      position: absolute;
+      right: -8px;
+      bottom: -22px;
+      font-size: 118px;
+      line-height: 1;
+      font-weight: 950;
+      color: rgba(255, 255, 255, 0.05);
+      letter-spacing: -0.09em;
+    }
+
+    .download-panel p {
+      color: #c7d3f4;
+    }
+
+    .app-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .app-card {
+      padding: 34px;
+    }
+
+    .app-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .app-list div {
+      background: #f7f9ff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      font-weight: 850;
+      color: #3f4a64;
+    }
+
+    .mock-phone {
+      max-width: 390px;
+      margin-inline: auto;
+      background: #0d1533;
+      padding: 16px;
+      border-radius: 42px;
+      box-shadow: var(--shadow);
+    }
+
+    .mock-screen {
+      min-height: 520px;
+      border-radius: 30px;
+      background: #f7f9ff;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .app-header {
+      background: linear-gradient(135deg, var(--brand), #0d1533);
+      border-radius: 24px;
+      color: #fff;
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .app-header strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .app-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .app-row span {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      display: grid;
+      place-items: center;
+      font-size: 21px;
+    }
+
+    .app-row strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .app-row small {
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 24px;
+    }
+
+    .contact-card a {
+      display: inline-flex;
+      margin-top: 16px;
+      color: var(--brand);
+      font-weight: 950;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: #fff;
+      border: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 22px;
+      text-align: left;
+      font-weight: 950;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+      padding: 0 22px;
+    }
+
+    .faq-item.open .faq-panel {
+      max-height: 180px;
+      padding: 0 22px 20px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--brand), #0d1533);
+      color: #fff;
+      border-radius: 42px;
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-box::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 250px;
+      height: 250px;
+      background: rgba(255, 176, 0, 0.28);
+      border-radius: 50%;
+    }
+
+    .cta-box > * {
+      position: relative;
+    }
+
+    .cta-box h2 {
+      margin-bottom: 12px;
+    }
+
+    .cta-box p {
+      color: #dbe4ff;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 0;
+      max-width: 680px;
+    }
+
+    .footer {
+      padding: 42px 0;
+      color: #c7d3f4;
+      background: #0d1533;
+      margin-top: 70px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer strong {
+      color: #fff;
+    }
+
+    .footer p,
+    .footer a {
+      color: #c7d3f4;
+      line-height: 1.7;
+    }
+
+    .footer a {
+      display: block;
+      margin-bottom: 9px;
+    }
+
+    .disclaimer {
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      color: #9aa9cf;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(30px);
+      background: #0d1533;
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.22s ease;
+      z-index: 80;
+      font-weight: 850;
+      font-size: 14px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .quiz-grid,
+      .app-wrap,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-grid,
+      .path-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .resource-grid,
+      .feature-grid,
+      .contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .floating-note {
+        right: 16px;
+        bottom: 38px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .top-strip .container {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .menu-btn {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 126px;
+        left: 17px;
+        right: 17px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        padding: 18px;
+        flex-direction: column;
+        align-items: stretch;
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.22s ease;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .trust-row,
+      .mini-grid,
+      .app-list,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blue-band,
+      .cta-box {
+        padding: 34px 24px;
+        border-radius: 28px;
+      }
+
+      section {
+        padding: 52px 0;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .problem-grid,
+      .resource-grid,
+      .feature-grid,
+      .path-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .phone-inner {
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .floating-note {
+        position: static;
+        width: auto;
+        margin-top: 14px;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      h1 {
+        letter-spacing: -0.06em;
+      }
+    }
+
+    /* Branded refinement: inspired by IndoLogus public thumbnails/PDF visual language
+       Dominant cues: bright yellow, deep black, electric blue, red highlight, compact exam cards. */
+    :root {
+      --bg: #fff8c8;
+      --surface: #ffffff;
+      --surface-soft: #fffbe7;
+      --ink: #101010;
+      --muted: #5f6372;
+      --brand: #0657c8;
+      --brand-dark: #111111;
+      --brand-soft: #eaf3ff;
+      --accent: #ffe500;
+      --accent-soft: #fff7b5;
+      --exam-red: #ef1d28;
+      --exam-blue: #075bd7;
+      --exam-yellow: #ffea00;
+      --line: rgba(17, 17, 17, 0.13);
+      --shadow: 0 24px 70px rgba(17, 17, 17, 0.18);
+      --shadow-soft: 0 14px 36px rgba(17, 17, 17, 0.10);
+      --radius-xl: 26px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --max: 1120px;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 229, 0, 0.80), transparent 26rem),
+        radial-gradient(circle at 88% 8%, rgba(6, 87, 200, 0.16), transparent 32rem),
+        linear-gradient(180deg, #fff8c8 0%, #ffffff 34%, #fffdf3 100%);
+    }
+
+    .top-strip {
+      background: #111111;
+      color: #fff6b0;
+      border-bottom: 4px solid var(--exam-yellow);
+    }
+
+    .top-strip strong {
+      color: var(--exam-yellow);
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(17, 17, 17, 0.10);
+      box-shadow: 0 10px 30px rgba(17, 17, 17, 0.06);
+    }
+
+    .nav {
+      min-height: 72px;
+    }
+
+    .brand {
+      gap: 13px;
+    }
+
+    .brand > span:last-child {
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark.indologus-logo {
+      width: 118px;
+      height: 50px;
+      border-radius: 10px;
+      background: var(--exam-yellow);
+      border: 2px solid #111;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      padding: 5px;
+      box-shadow: 6px 6px 0 #111, 0 14px 28px rgba(17, 17, 17, 0.16);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .brand-mark.indologus-logo::before {
+      content: "";
+      position: absolute;
+      inset: 5px auto auto 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--exam-red);
+      box-shadow: 82px 0 0 var(--exam-blue);
+      opacity: 0.95;
+    }
+
+    .brand-mark.indologus-logo::after {
+      content: "▶";
+      position: absolute;
+      right: 7px;
+      bottom: 5px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #111;
+      color: var(--exam-yellow);
+      font-size: 9px;
+      line-height: 1;
+      padding-left: 1px;
+    }
+
+    .logo-name {
+      margin-top: 11px;
+      display: block;
+      font-size: 18px;
+      line-height: 0.9;
+      font-weight: 1000;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+      color: #111;
+      transform: scaleX(0.94);
+      transform-origin: left center;
+    }
+
+    .logo-strip {
+      display: block;
+      width: calc(100% - 25px);
+      margin-top: 4px;
+      background: var(--exam-blue);
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 4px;
+      font-size: 8px;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand small {
+      color: #5f4d00;
+    }
+
+    .nav-links {
+      color: #171717;
+    }
+
+    .nav-links a::after {
+      background: linear-gradient(90deg, var(--exam-red), var(--exam-blue));
+      height: 3px;
+    }
+
+    .btn-primary {
+      background: #111;
+      color: var(--exam-yellow);
+      border: 2px solid #111;
+      box-shadow: 7px 7px 0 var(--exam-yellow), 0 16px 28px rgba(17,17,17,0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--exam-blue);
+      color: #fff;
+      border-color: #111;
+    }
+
+    .btn-dark {
+      background: var(--exam-blue);
+      color: #fff;
+      border: 2px solid #111;
+      box-shadow: 7px 7px 0 var(--exam-yellow), 0 16px 28px rgba(6, 87, 200, 0.20);
+    }
+
+    .btn-light {
+      background: #fff;
+      color: #111;
+      border: 2px solid #111;
+      box-shadow: 5px 5px 0 rgba(17, 17, 17, 0.10);
+    }
+
+    .hero {
+      padding: 70px 0 58px;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.02fr) minmax(380px, 0.9fr);
+      gap: 34px;
+    }
+
+    .badge {
+      background: #111;
+      color: #fff;
+      border: 1px solid #111;
+      box-shadow: 5px 5px 0 rgba(255, 229, 0, 0.75);
+    }
+
+    .badge strong {
+      color: var(--exam-yellow);
+    }
+
+    .brand-badge {
+      background: var(--exam-red);
+      color: #fff;
+    }
+
+    h1 {
+      color: #111;
+      text-shadow: 0 2px 0 rgba(255, 229, 0, 0.55);
+      font-size: clamp(40px, 6.2vw, 76px);
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      color: #fff;
+      background: #111;
+      border-radius: 16px;
+      padding: 0 14px 6px;
+      box-shadow: 8px 8px 0 var(--exam-yellow);
+    }
+
+    .lead {
+      color: #343434;
+      max-width: 620px;
+    }
+
+    .trust-row {
+      gap: 12px;
+      max-width: 600px;
+    }
+
+    .trust-card {
+      background: #fff;
+      border: 2px solid #111;
+      box-shadow: 6px 6px 0 rgba(17,17,17,0.08);
+      padding: 14px;
+      border-radius: 16px;
+    }
+
+    .trust-card strong {
+      color: var(--exam-blue);
+    }
+
+    .phone-card {
+      background: #111;
+      border: 3px solid #111;
+      box-shadow: 16px 16px 0 var(--exam-yellow), var(--shadow);
+      border-radius: 32px;
+      padding: 12px;
+    }
+
+    .phone-card::before {
+      background:
+        radial-gradient(circle at 20% 16%, rgba(255,229,0,0.95), transparent 22%),
+        radial-gradient(circle at 78% 12%, rgba(239,29,40,0.55), transparent 20%),
+        radial-gradient(circle at 80% 78%, rgba(6,87,200,0.65), transparent 30%);
+    }
+
+    .phone-inner {
+      min-height: 530px;
+      border-radius: 24px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .phone-logo-mini {
+      display: inline-flex;
+      align-items: center;
+      background: var(--exam-yellow);
+      color: #111;
+      border: 2px solid #111;
+      border-radius: 8px;
+      padding: 6px 9px;
+      font-size: 13px;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+      box-shadow: 4px 4px 0 #111;
+    }
+
+    .search-pill {
+      background: rgba(255, 229, 0, 0.18);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .video-preview {
+      border: 2px solid #111;
+      border-radius: 20px;
+    }
+
+    .video-art {
+      min-height: 150px;
+      background:
+        linear-gradient(135deg, rgba(255, 229, 0, 0.98) 0%, rgba(255, 229, 0, 0.92) 43%, rgba(6, 87, 200, 0.95) 44%, rgba(6, 87, 200, 0.96) 100%);
+      color: #111;
+      padding: 18px;
+    }
+
+    .video-art::after {
+      background: #111;
+      color: var(--exam-yellow);
+      width: 48px;
+      height: 48px;
+      right: 18px;
+      bottom: 18px;
+    }
+
+    .brand-ribbon {
+      width: fit-content;
+      background: #111;
+      color: var(--exam-yellow);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 1000;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+      box-shadow: 4px 4px 0 rgba(255,255,255,0.55);
+    }
+
+    .video-art small {
+      color: #111;
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 999px;
+      width: fit-content;
+      padding: 5px 9px;
+    }
+
+    .video-art h3 {
+      font-size: 24px;
+      max-width: 280px;
+    }
+
+    .tag {
+      color: #111;
+      background: var(--accent-soft);
+      border: 1px solid rgba(17,17,17,0.12);
+    }
+
+    .mini-item {
+      border-color: rgba(17,17,17,0.12);
+    }
+
+    .problem-card,
+    .feature-card,
+    .resource-card,
+    .quiz-card,
+    .path-step,
+    .app-card,
+    .contact-card,
+    .faq-item {
+      background: #fff;
+      border: 2px solid rgba(17,17,17,0.11);
+      border-radius: 18px;
+    }
+
+    .problem-grid {
+      gap: 14px;
+    }
+
+    .problem-card {
+      min-height: 185px;
+      padding: 18px;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      background: var(--exam-yellow);
+      color: #111;
+      border: 2px solid #111;
+      box-shadow: 4px 4px 0 rgba(17,17,17,0.12);
+    }
+
+    .blue-band,
+    .download-panel,
+    .mock-phone,
+    .footer {
+      background: #111;
+    }
+
+    .blue-band {
+      border: 3px solid #111;
+      box-shadow: 14px 14px 0 var(--exam-yellow), var(--shadow);
+      border-radius: 34px;
+      padding: 52px;
+    }
+
+    .blue-band::before {
+      background: radial-gradient(circle, rgba(6, 87, 200, 0.85), transparent 62%);
+    }
+
+    .blue-band .eyebrow,
+    .download-panel .eyebrow {
+      color: var(--exam-yellow) !important;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 20px;
+    }
+
+    .tab-btn {
+      border: 2px solid #111;
+      color: #111;
+      box-shadow: 4px 4px 0 rgba(17, 17, 17, 0.08);
+    }
+
+    .tab-btn.active,
+    .tab-btn:hover {
+      background: #111;
+      color: var(--exam-yellow);
+      border-color: #111;
+      box-shadow: 5px 5px 0 var(--exam-yellow);
+    }
+
+    .resource-grid {
+      grid-template-columns: repeat(3, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .resource-card {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 7px 7px 0 rgba(17,17,17,0.07), var(--shadow-soft);
+    }
+
+    .resource-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 9px 9px 0 var(--exam-yellow), var(--shadow);
+    }
+
+    .resource-thumb {
+      height: 134px;
+      padding: 15px;
+      background:
+        linear-gradient(135deg, var(--exam-yellow) 0%, var(--exam-yellow) 46%, var(--exam-blue) 47%, #111 100%);
+      color: #111;
+    }
+
+    .resource-thumb.gold {
+      background: linear-gradient(135deg, var(--exam-yellow) 0%, #ffcc00 48%, #111 49%, #111 100%);
+    }
+
+    .resource-thumb.green {
+      background: linear-gradient(135deg, var(--exam-yellow) 0%, #ffea00 38%, #0f9f6e 39%, #111 100%);
+    }
+
+    .resource-thumb.purple {
+      background: linear-gradient(135deg, var(--exam-yellow) 0%, #ffea00 38%, #7c3aed 39%, #111 100%);
+    }
+
+    .resource-thumb.red {
+      background: linear-gradient(135deg, var(--exam-yellow) 0%, #ffea00 38%, var(--exam-red) 39%, #111 100%);
+    }
+
+    .resource-thumb small {
+      color: #111;
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 999px;
+      padding: 5px 8px;
+      width: fit-content;
+      box-shadow: 3px 3px 0 rgba(17,17,17,0.12);
+    }
+
+    .resource-thumb strong {
+      color: #fff;
+      background: rgba(17,17,17,0.92);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 18px;
+      line-height: 1.12;
+      max-width: 92%;
+    }
+
+    .resource-body {
+      padding: 17px;
+    }
+
+    .resource-card h3,
+    .problem-card h3,
+    .feature-card h3,
+    .quiz-card h3,
+    .app-card h3,
+    .contact-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .resource-card p,
+    .problem-card p,
+    .feature-card p,
+    .quiz-card p,
+    .path-step p,
+    .app-card p,
+    .contact-card p,
+    .faq-panel {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .meta {
+      color: #111;
+      background: #fff8bc;
+      border: 1px solid rgba(17,17,17,0.12);
+      font-size: 11px;
+      padding: 5px 8px;
+    }
+
+    .card-actions {
+      margin-top: 14px;
+    }
+
+    .btn-mini {
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 2px solid #111;
+      color: #111;
+      font-size: 12px;
+      box-shadow: 3px 3px 0 rgba(17,17,17,0.08);
+    }
+
+    .btn-mini.primary {
+      background: #111;
+      color: var(--exam-yellow);
+      border-color: #111;
+    }
+
+    .path-step {
+      min-height: 205px;
+      padding: 20px;
+      box-shadow: 6px 6px 0 rgba(17,17,17,0.07);
+    }
+
+    .path-step::before {
+      background: var(--exam-yellow);
+      color: #111;
+      border: 2px solid #111;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 20px;
+      box-shadow: 4px 4px 0 rgba(17,17,17,0.12);
+    }
+
+    .quiz-section {
+      background: linear-gradient(180deg, transparent 0%, #fff8c8 100%);
+    }
+
+    .quiz-card,
+    .app-card,
+    .contact-card {
+      padding: 24px;
+      box-shadow: 7px 7px 0 rgba(17,17,17,0.07), var(--shadow-soft);
+    }
+
+    .question-box {
+      background: #fffdf0;
+      border: 2px solid rgba(17,17,17,0.10);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .answer-list button {
+      border: 2px solid rgba(17,17,17,0.12);
+      color: #111;
+    }
+
+    .answer-list button:hover {
+      border-color: #111;
+      box-shadow: 3px 3px 0 var(--exam-yellow);
+    }
+
+    .download-panel {
+      border: 3px solid #111;
+      box-shadow: 12px 12px 0 var(--exam-yellow), var(--shadow);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .app-header {
+      background: linear-gradient(135deg, var(--exam-yellow) 0%, var(--exam-yellow) 42%, var(--exam-blue) 43%, #111 100%);
+      color: #111;
+      border: 2px solid #111;
+    }
+
+    .app-header strong {
+      color: #fff;
+      background: #111;
+      width: fit-content;
+      border-radius: 9px;
+      padding: 5px 9px;
+    }
+
+    .app-list div,
+    .app-row {
+      background: #fff;
+      border: 2px solid rgba(17,17,17,0.10);
+    }
+
+    .app-row span {
+      background: var(--exam-yellow);
+      color: #111;
+      border: 2px solid #111;
+    }
+
+    .contact-card a {
+      color: var(--exam-blue);
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #111 0%, #111 54%, var(--exam-blue) 55%, var(--exam-blue) 100%);
+      border: 3px solid #111;
+      box-shadow: 14px 14px 0 var(--exam-yellow), var(--shadow);
+      border-radius: 32px;
+      padding: 48px;
+    }
+
+    .cta-box::after {
+      background: rgba(255, 229, 0, 0.35);
+    }
+
+    .footer {
+      border-top: 6px solid var(--exam-yellow);
+      margin-top: 62px;
+    }
+
+    .footer .brand-mark.indologus-logo {
+      box-shadow: 5px 5px 0 rgba(255,255,255,0.10);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+      }
+
+      .brand-mark.indologus-logo {
+        width: 108px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand-mark.indologus-logo {
+        width: 96px;
+        height: 44px;
+        box-shadow: 4px 4px 0 #111;
+      }
+
+      .logo-name {
+        font-size: 15px;
+      }
+
+      .logo-strip {
+        font-size: 7px;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-thumb {
+        height: 126px;
+      }
+
+      .blue-band,
+      .cta-box {
+        box-shadow: 8px 8px 0 var(--exam-yellow), var(--shadow-soft);
+      }
+
+      .phone-card {
+        box-shadow: 8px 8px 0 var(--exam-yellow), var(--shadow-soft);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="top-strip">
+    <div class="container">
+      <div><strong>Brand demo:</strong> IndoLogus-style yellow, blue, black and red study hub for videos, PDFs, quizzes and app access.</div>
+      <div class="links">
+        <a href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://t.me/indolgus" target="_blank" rel="noopener">Telegram PDFs</a>
+        <a href="https://t.me/IndologusCurrentAffairs" target="_blank" rel="noopener">Quiz Channel</a>
+        <a href="https://play.google.com/store/apps/details?id=com.fookso.zqwhnh" target="_blank" rel="noopener">App</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="IndoLogus home">
+        <span class="brand-mark indologus-logo" aria-label="IndoLogus brand logo concept">
+            <span class="logo-name">IndoLogus</span>
+            <span class="logo-strip">Current Affairs</span>
+          </span>
+        <span>IndoLogus <small>A New Way Of Learning</small></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#resources">Current Affairs</a>
+        <a href="#pdfs">PDF Library</a>
+        <a href="#quizzes">Quiz</a>
+        <a href="#app">App</a>
+        <a href="#official-links">Official Links</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-light" href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Watch YouTube</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge-row">
+            <span class="badge">📚 Daily Current Affairs</span>
+            <span class="badge">🏆 SSC • Railway • UPSC • State PCS</span>
+            <span class="badge"><strong>Demo Website</strong></span>
+          </div>
+          <h1>One official hub for <span>Current Affairs</span>, PDFs, quizzes and videos.</h1>
+          <p class="lead">A professional homepage concept for IndoLogus that organizes YouTube lectures, monthly and topic-wise PDFs, Static GK, quiz practice and app downloads in one clean student-friendly platform.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#resources">Explore Study Materials</a>
+            <a class="btn btn-light" href="#pdfs">Find PDFs</a>
+            <a class="btn btn-dark" href="https://play.google.com/store/apps/details?id=com.fookso.zqwhnh" target="_blank" rel="noopener">Download App</a>
+          </div>
+          <div class="trust-row" aria-label="Public platform highlights">
+            <div class="trust-card">
+              <strong data-count="900">0</strong>
+              <span>900K+ YouTube community</span>
+            </div>
+            <div class="trust-card">
+              <strong data-count="1000">0</strong>
+              <span>App downloads and growing</span>
+            </div>
+            <div class="trust-card">
+              <strong data-count="4">0</strong>
+              <span>Study channels connected</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel" aria-label="Website preview card">
+          <div class="phone-card">
+            <div class="phone-inner">
+              <div class="phone-top">
+                <span class="phone-logo-mini">INDOLOGUS</span>
+                <span>Live Demo</span>
+              </div>
+              <div class="search-pill">🔎 Search: May Current Affairs 2026, Ramsar Sites, Static GK...</div>
+              <article class="video-preview">
+                <div class="video-art">
+                  <div class="brand-ribbon">INDOLOGUS • CA</div>
+                  <small>Latest Current Affairs</small>
+                  <h3>May Current Affairs 2026 Top 150 Questions</h3>
+                </div>
+                <div class="video-info">
+                  <div class="tag-line">
+                    <span class="tag">Video</span>
+                    <span class="tag">PDF</span>
+                    <span class="tag">Quiz</span>
+                    <span class="tag">Revision</span>
+                  </div>
+                  <div class="mini-grid">
+                    <div class="mini-item">Watch</div>
+                    <div class="mini-item">Download</div>
+                    <div class="mini-item">Practice</div>
+                  </div>
+                </div>
+              </article>
+              <div class="floating-note">
+                <strong>Why website?</strong>
+                <span>Students can still access PDFs, videos and app links even when Telegram access becomes difficult.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">The student problem</div>
+            <h2>Content is strong. Access should be simpler.</h2>
+          </div>
+          <p>Today students may move between YouTube, Telegram, quiz groups, PDFs and the app. The website becomes the official bridge that connects everything.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card">
+            <div class="icon">🎥</div>
+            <h3>Videos are on YouTube</h3>
+            <p>Lectures and revision videos are valuable, but students need a clear index by month, topic and exam.</p>
+          </article>
+          <article class="problem-card">
+            <div class="icon accent">📄</div>
+            <h3>PDFs need structure</h3>
+            <p>Monthly CA, topic-wise CA and Static GK PDFs should be searchable without scrolling old Telegram posts.</p>
+          </article>
+          <article class="problem-card">
+            <div class="icon">🧠</div>
+            <h3>Quiz practice matters</h3>
+            <p>A daily quiz and topic quiz section can increase repeat visits and help aspirants revise faster.</p>
+          </article>
+          <article class="problem-card">
+            <div class="icon accent">📲</div>
+            <h3>App needs traffic</h3>
+            <p>The site can send serious students to the official IndoLogus app for notes, classes and practice materials.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="blue-band">
+          <div class="eyebrow">Website concept</div>
+          <h2>Not a replacement for YouTube, Telegram or app — a central platform that supports all three.</h2>
+          <p class="section-intro">The best pitch is: IndoLogus already has the content and student trust. This homepage adds professional discovery, Google search visibility and reliable access.</p>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h3>Searchable Study Library</h3>
+              <p>Students find monthly current affairs, topic-wise PDFs, Static GK and revision resources quickly.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Google Traffic Pages</h3>
+              <p>Pages can target searches like “SSC current affairs 2026 PDF” and “May current affairs top 150”.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Official Link Protection</h3>
+              <p>Students get verified links to YouTube, app, Telegram and quiz channels from one trusted page.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Latest content desk</div>
+            <h2>Current Affairs and GK organized like a real learning product.</h2>
+          </div>
+          <p>Sample homepage cards using public IndoLogus content categories and recent YouTube topics.</p>
+        </div>
+
+        <div class="content-tabs" id="filterTabs" aria-label="Filter resources">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="monthly">Monthly CA</button>
+          <button class="tab-btn" data-filter="topic">Topic Wise</button>
+          <button class="tab-btn" data-filter="static">Static GK</button>
+          <button class="tab-btn" data-filter="polity">Polity</button>
+        </div>
+
+        <div class="resource-grid" id="resourceGrid">
+          <article class="resource-card" data-category="monthly">
+            <div class="resource-thumb">
+              <small>Monthly Current Affairs</small>
+              <strong>May Current Affairs 2026 — Top 150</strong>
+            </div>
+            <div class="resource-body">
+              <div class="meta-row"><span class="meta">SSC 2026</span><span class="meta">Monthly</span><span class="meta">PDF + Video</span></div>
+              <h3>Complete monthly revision path</h3>
+              <p>Watch the lecture, download the PDF after upload, then attempt the quiz for quick retention.</p>
+              <div class="card-actions">
+                <a class="btn-mini primary" href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Watch</a>
+                <button class="btn-mini copy-btn" data-copy="May Current Affairs 2026 PDF">Copy Topic</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="topic">
+            <div class="resource-thumb green">
+              <small>Environment</small>
+              <strong>Environment 2026 Current Affairs</strong>
+            </div>
+            <div class="resource-body">
+              <div class="meta-row"><span class="meta">Environment</span><span class="meta">Topic-wise</span><span class="meta">UPSC • SSC</span></div>
+              <h3>Topic-wise revision made simple</h3>
+              <p>Organize environment and ecology lectures with matching PDF, notes and quiz practice.</p>
+              <div class="card-actions">
+                <a class="btn-mini primary" href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Watch</a>
+                <button class="btn-mini copy-btn" data-copy="Environment 2026 Current Affairs">Copy Topic</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="topic">
+            <div class="resource-thumb gold">
+              <small>Wetlands of India</small>
+              <strong>Ramsar Sites 2026 Current Affairs</strong>
+            </div>
+            <div class="resource-body">
+              <div class="meta-row"><span class="meta">Ramsar Sites</span><span class="meta">Current Affairs</span><span class="meta">Revision</span></div>
+              <h3>Exam-focused topic page</h3>
+              <p>Useful for creating a dedicated topic page with key points, video link, PDF and MCQs.</p>
+              <div class="card-actions">
+                <a class="btn-mini primary" href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Watch</a>
+                <button class="btn-mini copy-btn" data-copy="Ramsar Sites 2026 Current Affairs">Copy Topic</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="static">
+            <div class="resource-thumb purple">
+              <small>Art & Culture</small>
+              <strong>UNESCO World Heritage Sites</strong>
+            </div>
+            <div class="resource-body">
+              <div class="meta-row"><span class="meta">Static GK</span><span class="meta">Art & Culture</span><span class="meta">SSC • UPSC</span></div>
+              <h3>Static GK content hub</h3>
+              <p>Convert high-value Static GK videos into evergreen pages that students can revisit anytime.</p>
+              <div class="card-actions">
+                <a class="btn-mini primary" href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Watch</a>
+                <button class="btn-mini copy-btn" data-copy="UNESCO World Heritage Sites Static GK">Copy Topic</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="polity">
+            <div class="resource-thumb red">
+              <small>Indian Polity</small>
+              <strong>Panchayats — Complete Polity Lecture</strong>
+            </div>
+            <div class="resource-body">
+              <div class="meta-row"><span class="meta">Polity</span><span class="meta">Lecture</span><span class="meta">State PCS</span></div>
+              <h3>Course-style organization</h3>
+              <p>Lessons can be grouped into a complete polity track with lecture numbers and progress flow.</p>
+              <div class="card-actions">
+                <a class="btn-mini primary" href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Watch</a>
+                <button class="btn-mini copy-btn" data-copy="Panchayats Complete Polity Lecture">Copy Topic</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="static">
+            <div class="resource-thumb">
+              <small>History GK</small>
+              <strong>Important Battles — Ancient, Medieval & Modern</strong>
+            </div>
+            <div class="resource-body">
+              <div class="meta-row"><span class="meta">History</span><span class="meta">Static GK</span><span class="meta">Railway</span></div>
+              <h3>Fast revision page</h3>
+              <p>Perfect for short high-retention GK pages with timeline, PDF and practice questions.</p>
+              <div class="card-actions">
+                <a class="btn-mini primary" href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Watch</a>
+                <button class="btn-mini copy-btn" data-copy="Important Battles History GK">Copy Topic</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pdfs">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">PDF Library</div>
+            <h2>Students should not search old messages for PDFs.</h2>
+          </div>
+          <p>A real site can include upload tools for admins. This demo shows the front-end experience students will see.</p>
+        </div>
+        <div class="quiz-grid">
+          <div class="quiz-card">
+            <h3>Search PDF Library</h3>
+            <p>Type a keyword like “May”, “Ramsar”, “Polity” or “Static GK”.</p>
+            <div class="search-pill" style="background:#f7f9ff;color:#4f5b74;border-color:var(--line);margin-top:18px;">
+              🔎 <input id="pdfSearch" type="search" placeholder="Search PDFs and topics..." style="border:0;outline:0;background:transparent;width:100%;font:inherit;color:var(--ink);" />
+            </div>
+            <div class="resource-grid" id="pdfList" style="grid-template-columns:1fr;margin-top:16px;">
+              <article class="app-row" data-title="May Current Affairs 2026 Top 150 PDF">
+                <span>📄</span><div><strong>May Current Affairs 2026 Top 150 PDF</strong><small>Monthly CA • SSC 2026</small></div>
+              </article>
+              <article class="app-row" data-title="Ramsar Sites 2026 Wetlands of India PDF">
+                <span>📄</span><div><strong>Ramsar Sites 2026 Wetlands of India PDF</strong><small>Topic-wise CA • Environment</small></div>
+              </article>
+              <article class="app-row" data-title="Environment 2026 Current Affairs PDF">
+                <span>📄</span><div><strong>Environment 2026 Current Affairs PDF</strong><small>Topic-wise CA • Ecology</small></div>
+              </article>
+              <article class="app-row" data-title="UNESCO World Heritage Sites Static GK PDF">
+                <span>📄</span><div><strong>UNESCO World Heritage Sites Static GK PDF</strong><small>Art & Culture • Static GK</small></div>
+              </article>
+              <article class="app-row" data-title="Panchayats Complete Polity Lecture Notes">
+                <span>📄</span><div><strong>Panchayats Complete Polity Lecture Notes</strong><small>Indian Polity • State PCS</small></div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="download-panel">
+            <div>
+              <div class="eyebrow" style="color:#96adff;">Access promise</div>
+              <h2>PDFs, notes and practice materials in one official location.</h2>
+              <p>This section solves the biggest student pain: “Where is the PDF?” Instead of depending only on Telegram, the website can show the latest materials clearly and send students to the app for full access.</p>
+            </div>
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.fookso.zqwhnh" target="_blank" rel="noopener" style="width:max-content;">Open Official App</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Study flow</div>
+            <h2>Give every student a clear current affairs routine.</h2>
+          </div>
+        </div>
+        <div class="path-grid">
+          <article class="path-step">
+            <h3>Watch the latest lecture</h3>
+            <p>Students start with the newest YouTube current affairs or Static GK video.</p>
+          </article>
+          <article class="path-step">
+            <h3>Download matching PDF</h3>
+            <p>After the video, the page shows the exact PDF or app link for the same topic.</p>
+          </article>
+          <article class="path-step">
+            <h3>Practice quiz questions</h3>
+            <p>Daily and topic-wise MCQs help students revise without leaving the IndoLogus ecosystem.</p>
+          </article>
+          <article class="path-step">
+            <h3>Continue in the app</h3>
+            <p>Serious learners move into the app for structured notes, classes and practice materials.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="quizzes" class="quiz-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Quiz practice</div>
+            <h2>A simple daily quiz preview increases engagement.</h2>
+          </div>
+          <p>This sample interactive question shows how the real website can keep students coming back every day.</p>
+        </div>
+        <div class="quiz-grid">
+          <div class="quiz-card">
+            <div class="eyebrow">Demo question</div>
+            <div class="question-box">
+              <h3>Which section should a student visit for old monthly PDFs?</h3>
+              <div class="answer-list" id="answerList">
+                <button data-correct="false">Only YouTube comments</button>
+                <button data-correct="true">Searchable PDF Library</button>
+                <button data-correct="false">Random forwarded messages</button>
+                <button data-correct="false">Browser history</button>
+              </div>
+              <div class="quiz-result" id="quizResult">Choose one answer.</div>
+            </div>
+          </div>
+          <div class="quiz-card">
+            <div class="icon accent">🏆</div>
+            <h3>Real website quiz ideas</h3>
+            <p>Daily current affairs quiz, monthly revision quiz, Static GK quiz, leaderboard, answer explanations, and topic-wise question banks for SSC, Railway, Banking, UPSC and State PCS.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://t.me/IndologusCurrentAffairs" target="_blank" rel="noopener">Open Quiz Channel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="app">
+      <div class="container app-wrap">
+        <div class="app-card">
+          <div class="eyebrow">Official app bridge</div>
+          <h2>Use the website to send students into the IndoLogus app.</h2>
+          <p>The app is positioned for structured notes, classes, practice materials, progress tracking and study-anywhere access. The website should highlight that clearly and repeatedly.</p>
+          <div class="app-list">
+            <div>📚 Structured Notes</div>
+            <div>🎓 Classes</div>
+            <div>🧪 Practice Materials</div>
+            <div>📈 Progress Tracking</div>
+          </div>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.fookso.zqwhnh" target="_blank" rel="noopener">Download IndoLogus App</a>
+        </div>
+        <div class="mock-phone" aria-label="App preview mockup">
+          <div class="mock-screen">
+            <div class="app-header">
+              <strong>IndoLogus App</strong>
+              <small>Continue your preparation without interruption</small>
+            </div>
+            <div class="app-row"><span>📘</span><div><strong>Current Affairs PDFs</strong><small>Monthly + topic-wise</small></div></div>
+            <div class="app-row"><span>🎥</span><div><strong>Classes & Lectures</strong><small>Learn from organized videos</small></div></div>
+            <div class="app-row"><span>✅</span><div><strong>Practice Materials</strong><small>Revise with exam-oriented content</small></div></div>
+            <div class="app-row"><span>📊</span><div><strong>Track Progress</strong><small>Study regularly and improve</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="official-links">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Official links</div>
+            <h2>One trusted page for all IndoLogus platforms.</h2>
+          </div>
+          <p>This is a strong trust feature because it prevents students from depending on unofficial forwarded links.</p>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-card">
+            <div class="icon">▶️</div>
+            <h3>YouTube Channel</h3>
+            <p>Daily current affairs, Static GK, GK tricks, motivational videos and exam-focused revision content.</p>
+            <a href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">Open YouTube →</a>
+          </article>
+          <article class="contact-card">
+            <div class="icon accent">📄</div>
+            <h3>Telegram PDF Channel</h3>
+            <p>Public channel for PDF updates connected to YouTube videos, monthly CA, topic-wise CA and Static GK.</p>
+            <a href="https://t.me/indolgus" target="_blank" rel="noopener">Open Telegram →</a>
+          </article>
+          <article class="contact-card">
+            <div class="icon">🧠</div>
+            <h3>Quiz Channel</h3>
+            <p>Quiz practice community for SSC, Railway, State PCS and other competitive exam aspirants.</p>
+            <a href="https://t.me/IndologusCurrentAffairs" target="_blank" rel="noopener">Open Quiz Channel →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head" style="justify-content:center;text-align:center;">
+          <div>
+            <div class="eyebrow">FAQ</div>
+            <h2>Questions their team may ask.</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item open">
+            <button class="faq-question">Will this replace YouTube or Telegram? <span>+</span></button>
+            <div class="faq-panel">No. The website supports them. It organizes content, improves trust, sends traffic to YouTube, and pushes serious students to the app.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question">Can PDFs be uploaded easily? <span>+</span></button>
+            <div class="faq-panel">Yes. In the real website, an admin panel can let the IndoLogus team upload PDFs, add video links, set month/topic/exam tags and publish pages quickly.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question">Why is a website useful if the app already exists? <span>+</span></button>
+            <div class="faq-panel">A website is better for Google discovery, official links and quick browsing. The app is better for deeper learning. Together they create a stronger funnel.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Ready to turn this demo into a real IndoLogus website?</h2>
+            <p>Phase 1 can include homepage, current affairs library, PDF listing, video pages, quiz section, app landing page and admin upload panel.</p>
+          </div>
+          <a class="btn btn-light" href="mailto:nasarnox92@gmail.com?subject=Website%20demo%20idea%20for%20IndoLogus&body=Hi%20IndoLogus%20Team%2C%0A%0AI%20created%20a%20homepage%20demo%20idea%20for%20organizing%20your%20videos%2C%20PDFs%2C%20quizzes%20and%20app%20links%20in%20one%20official%20website.%0A%0ACan%20I%20share%20the%20sample%20design%20with%20you%3F">Contact Team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:14px;">
+            <span class="brand-mark indologus-logo" aria-label="IndoLogus brand logo concept">
+            <span class="logo-name">IndoLogus</span>
+            <span class="logo-strip">Current Affairs</span>
+          </span>
+            <span>IndoLogus <small style="color:#96adff;">Concept Study Hub</small></span>
+          </div>
+          <p>This is an unofficial homepage demo concept prepared to show how IndoLogus public content can be organized into a professional website experience.</p>
+        </div>
+        <div>
+          <strong>Study Sections</strong>
+          <a href="#resources">Current Affairs</a>
+          <a href="#pdfs">PDF Library</a>
+          <a href="#quizzes">Daily Quiz</a>
+          <a href="#app">App Download</a>
+        </div>
+        <div>
+          <strong>Public Links</strong>
+          <a href="https://www.youtube.com/@IndoLogus" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://t.me/indolgus" target="_blank" rel="noopener">Telegram PDFs</a>
+          <a href="https://t.me/IndologusCurrentAffairs" target="_blank" rel="noopener">Quiz Channel</a>
+          <a href="https://play.google.com/store/apps/details?id=com.fookso.zqwhnh" target="_blank" rel="noopener">Google Play App</a>
+        </div>
+      </div>
+      <div class="disclaimer">Demo note: This page is not an official IndoLogus website. Logos, names and public platform references are used only for proposal/demo purposes. Replace with official brand assets and approved content before production.</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Copied</div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const toast = document.getElementById('toast');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuBtn.textContent = navLinks.classList.contains('open') ? '×' : '☰';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    const showToast = (message) => {
+      toast.textContent = message;
+      toast.classList.add('show');
+      window.setTimeout(() => toast.classList.remove('show'), 1800);
+    };
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count || 0);
+        const suffix = target >= 900 ? 'K+' : target >= 1000 ? '+' : '';
+        const displayTarget = target >= 900 && target < 1000 ? target : target;
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 45));
+        const timer = window.setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            window.clearInterval(timer);
+          }
+          if (target === 1000) {
+            el.textContent = '1K+';
+          } else if (target === 900) {
+            el.textContent = '900K+';
+          } else {
+            el.textContent = current + suffix;
+          }
+        }, 24);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const cards = document.querySelectorAll('.resource-card');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(item => item.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          const visible = filter === 'all' || card.dataset.category === filter;
+          card.style.display = visible ? '' : 'none';
+        });
+      });
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.dataset.copy;
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('Topic copied: ' + text);
+        } catch (error) {
+          showToast('Topic: ' + text);
+        }
+      });
+    });
+
+    const pdfSearch = document.getElementById('pdfSearch');
+    const pdfItems = document.querySelectorAll('#pdfList .app-row');
+
+    pdfSearch.addEventListener('input', (event) => {
+      const value = event.target.value.toLowerCase().trim();
+      pdfItems.forEach(item => {
+        const text = item.dataset.title.toLowerCase();
+        item.style.display = text.includes(value) ? 'flex' : 'none';
+      });
+    });
+
+    const answerList = document.getElementById('answerList');
+    const quizResult = document.getElementById('quizResult');
+
+    answerList.addEventListener('click', (event) => {
+      if (event.target.tagName !== 'BUTTON') return;
+      answerList.querySelectorAll('button').forEach(btn => {
+        btn.classList.remove('correct', 'wrong');
+        btn.disabled = true;
+      });
+      const isCorrect = event.target.dataset.correct === 'true';
+      event.target.classList.add(isCorrect ? 'correct' : 'wrong');
+      answerList.querySelector('[data-correct="true"]').classList.add('correct');
+      quizResult.textContent = isCorrect
+        ? 'Correct. A searchable PDF Library solves the access problem.'
+        : 'Good try. The correct answer is Searchable PDF Library.';
+    });
+
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
